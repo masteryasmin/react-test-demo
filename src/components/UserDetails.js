@@ -17,7 +17,6 @@ export default function UserDetails(props) {
     useEffect(() => {    
         console.log("in ud", props.userId)
         getData();
-     
       },[]);
     
       const showUserCommentsPosts = (id) => {

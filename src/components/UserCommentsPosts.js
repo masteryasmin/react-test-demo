@@ -19,6 +19,8 @@ function Comments(props ){
 export default function UserCommentsPosts(props) {
   const [title, setTitle] = useState('')
   const [body, setBody] = useState('')
+  const [page,commnets] = useState(1);
+  const [perPage,setPerPage] = useState(5);
 
     const [userPosts, setUserPosts] = useState('')
     const [userComments, setUserComments] = useState('')
@@ -37,9 +39,12 @@ export default function UserCommentsPosts(props) {
       },[]);
       async function showComments(postId){
         const commnets = await postAPIObj.fetch("posts/" + postId + "/comments")
-      
+       
+        console.log('commnets---',commnets.slice(page-1*perPage));
+       //commnets.slice(page-1*perPage)
+
         setCurrentComments(postId)
-        setUserComments(commnets)
+        setUserComments(commnets.slice(page-1*perPage))
       }
 
      async function addPost (userId){
